@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IngredientsService } from 'src/app/api/cooking/ingredients.service';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -9,9 +10,15 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class LandingComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(
+    private auth: AuthService,
+    private ingredientsService: IngredientsService,
+  ) { }
 
   ngOnInit(): void {
+    this.ingredientsService.getIngredients().subscribe(d => {
+      console.info(d);
+    })
   }
 
   login() {
