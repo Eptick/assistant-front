@@ -18,6 +18,8 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoggedInHeaderComponent } from './header/logged-in-header/logged-in-header.component';
 import { LandingHeaderComponent } from './header/landing-header/landing-header.component';
+import { AddIngredientComponent } from './pages/cooking/add-ingredient/add-ingredient.component';
+import { CookingComponent } from './pages/cooking/cooking/cooking.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -42,6 +44,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     LandingComponent,
     LoggedInHeaderComponent,
     LandingHeaderComponent,
+    AddIngredientComponent,
+    CookingComponent,
   ],
   imports: [
     KeycloakAngularModule,
