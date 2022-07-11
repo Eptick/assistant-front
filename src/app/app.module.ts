@@ -13,6 +13,7 @@ import { DividerModule } from 'primeng/divider';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
+import { TableModule } from 'primeng/table';
 
 import { LandingComponent } from './pages/landing/landing.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +21,8 @@ import { LoggedInHeaderComponent } from './header/logged-in-header/logged-in-hea
 import { LandingHeaderComponent } from './header/landing-header/landing-header.component';
 import { AddIngredientComponent } from './pages/cooking/add-ingredient/add-ingredient.component';
 import { CookingComponent } from './pages/cooking/cooking/cooking.component';
+import { RequiredStarComponent } from './shared/form/required-star/required-star.component';
+import { IngredientsComponent } from './cooking/ingredients/ingredients.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -41,11 +44,13 @@ function initializeKeycloak(keycloak: KeycloakService) {
 @NgModule({
   declarations: [
     AppComponent,
+    RequiredStarComponent,
     LandingComponent,
     LoggedInHeaderComponent,
     LandingHeaderComponent,
     AddIngredientComponent,
     CookingComponent,
+    IngredientsComponent,
   ],
   imports: [
     KeycloakAngularModule,
@@ -61,6 +66,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     InputNumberModule,
     DropdownModule,
     InputMaskModule,
+    TableModule,
 
     DividerModule,
     InputTextareaModule,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { catchError, EMPTY } from 'rxjs';
 import { IngredientsService } from 'src/app/api/cooking/ingredients.service';
 
 @Component({
@@ -13,7 +15,9 @@ export class AddIngredientComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
   });
 
-  constructor(private ingredientsService: IngredientsService) { }
+  constructor(
+    private router: Router,
+    private ingredientsService: IngredientsService) { }
 
   ngOnInit(): void {
   }
@@ -22,16 +26,15 @@ export class AddIngredientComponent implements OnInit {
     this.form.markAllAsTouched();
     if(this.form.valid) {
       console.table(this.form.value);
-      this.form.saveIngredient(this.form.value)
+      this.ingredientsService.saveIngredient(this.form.value)
       .pipe(
         catchError(err => {
           console.error(err.error)
-          this.stepOneForm.errors
-          this.stepOneForm.setErrors({...err.error})
+          this.form.setErrors({...err.error})
           return EMPTY;
         })
       ).subscribe(data => {
-        this.router.navigate(['/onboarding/provider/step-two']);
+        // this.router.navigate(['/onboarding/provider/step-two']);
       })
     }
   }

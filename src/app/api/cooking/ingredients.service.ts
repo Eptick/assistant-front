@@ -19,7 +19,7 @@ export class IngredientsService {
 
   public saveIngredient(data: Ingredient) {
     return this.resource.http.post(
-      `${this.resource.base}${this.serviceBase}/in`,
+      `${this.resource.base}${this.serviceBase}`,
       data
     );
   }
