@@ -14,6 +14,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TableModule } from 'primeng/table';
+import { ContextMenuModule } from 'primeng/contextmenu';
 
 import { LandingComponent } from './pages/landing/landing.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -60,6 +61,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     StyleClassModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ContextMenuModule,
 
     ButtonModule,
     InputTextModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, MenuItem } from 'primeng/api';
 import { IngredientsService } from 'src/app/api/cooking/ingredients.service';
 import { Ingredient } from 'src/app/types/shared/ingredient.types';
 
@@ -22,25 +22,27 @@ export class IngredientsComponent implements OnInit {
 
   selected: Ingredient[] = [];
 
-  constructor(private ingredientsService: IngredientsService) { }
+  contextMenu: MenuItem[] = [];
+  contextSelection?: Ingredient;
+
+  constructor(private dataService: IngredientsService) { }
 
   ngOnInit() {
       this.loading = true;
+
+      this.contextMenu = [
+        {label: 'Delete', icon: 'pi pi-fw pi-times', command: () => this.deleteItem()}
+    ];
   }
 
   loadData(event: LazyLoadEvent) {
-      this.loading = true;
-
-      setTimeout(() => {
-        const data = {lazyEvent: JSON.stringify(event)};
-        debugger
-        this.ingredientsService.getIngredients().subscribe(res => {
-          debugger;
-            this.data = res.content;
-            this.totalRecords = res.numberOfElements;
-            this.loading = false;
-        })
-      }, 1000);
+    this.loading = true;
+    const data = {lazyEvent: JSON.stringify(event)};
+    this.dataService.getIngredients().subscribe(res => {
+        this.data = res.content;
+        this.totalRecords = res.numberOfElements;
+        this.loading = false;
+    })
   }
 
   onSelectionChange(value = []) {
@@ -52,7 +54,7 @@ export class IngredientsComponent implements OnInit {
       const checked = event.checked;
 
       if (checked) {
-          this.ingredientsService.getIngredients().subscribe(res => {
+          this.dataService.getIngredients().subscribe(res => {
               this.selected = res.content;
               this.selectAll = true;
           });
@@ -62,4 +64,10 @@ export class IngredientsComponent implements OnInit {
           this.selectAll = false;
       }
   }
+
+  deleteItem() {
+    const uuid: string | undefined = this.contextSelection?.uuid;
+    if(!uuid) throw new Error("No uuid");
+    this.dataService.deleteIngredient(uuid).subscribe();
+}
 }

@@ -23,4 +23,9 @@ export class IngredientsService {
       data
     );
   }
+  
+  public deleteIngredient(uuid: string) {
+    return this.resource.http.delete(`${this.resource.base}${this.serviceBase}/${uuid}`);
+  }
+  
 }
