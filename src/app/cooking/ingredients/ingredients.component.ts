@@ -38,7 +38,8 @@ export class IngredientsComponent implements OnInit {
   loadData(event: LazyLoadEvent) {
     this.loading = true;
     const data = {lazyEvent: JSON.stringify(event)};
-    this.dataService.getIngredients().subscribe(res => {
+    const name: string = event.filters?.["name"]?.value ?? ''; 
+    this.dataService.getIngredients(name).subscribe(res => {
         this.data = res.content;
         this.totalRecords = res.numberOfElements;
         this.loading = false;

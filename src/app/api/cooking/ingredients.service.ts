@@ -11,9 +11,9 @@ export class IngredientsService {
 
   constructor(private resource: ResourceServerService) {}
 
-  public getIngredients(): Observable<any> {
+  public getIngredients(name: string = ""): Observable<any> {
     return this.resource.http.get<any[]>(
-      `${this.resource.base}${this.serviceBase}`
+      `${this.resource.base}${this.serviceBase}?name=${name}`
     );
   }
 
