@@ -13,5 +13,6 @@
             <h2>Ingredients</h2>
         </div>
     </div>
+    <p *ngFor="let s of selectedIngredients">{{ s.name }}</p>
 </div>
-<app-ingredients></app-ingredients>
+<app-ingredients [(selected)]="selectedIngredients" ></app-ingredients>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LazyLoadEvent, MenuItem } from 'primeng/api';
 import { IngredientsService } from 'src/app/api/cooking/ingredients.service';
 import { Ingredient } from 'src/app/types/shared/ingredient.types';
@@ -17,10 +17,10 @@ export class IngredientsComponent implements OnInit {
 
   loading: boolean = true;
 
-
   selectAll: boolean = false;
 
-  selected: Ingredient[] = [];
+  @Input()  selected!: Ingredient[];
+  @Output() selectedChange = new EventEmitter<Ingredient[]>();
 
   contextMenu: MenuItem[] = [];
   contextSelection?: Ingredient;
@@ -48,7 +48,7 @@ export class IngredientsComponent implements OnInit {
 
   onSelectionChange(value = []) {
       this.selectAll = value.length === this.totalRecords;
-      this.selected = value;
+      this.selectedChange.emit(value);
   }
 
   onSelectAllChange(event: any) {
@@ -56,11 +56,12 @@ export class IngredientsComponent implements OnInit {
 
       if (checked) {
           this.dataService.getIngredients().subscribe(res => {
-              this.selected = res.content;
+              this.selectedChange.emit(res.cotent);
               this.selectAll = true;
           });
       }
       else {
+          this.selectedChange.emit([]);
           this.selected = [];
           this.selectAll = false;
       }
@@ -70,5 +71,5 @@ export class IngredientsComponent implements OnInit {
     const uuid: string | undefined = this.contextSelection?.uuid;
     if(!uuid) throw new Error("No uuid");
     this.dataService.deleteIngredient(uuid).subscribe();
-}
+  }
 }
