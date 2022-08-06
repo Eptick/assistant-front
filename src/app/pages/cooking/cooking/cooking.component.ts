@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingredient } from 'src/app/types/shared/ingredient.types';
+import { Recipe } from 'src/app/types/shared/recipe.types';
 
 @Component({
   selector: 'app-cooking',
@@ -9,6 +10,7 @@ import { Ingredient } from 'src/app/types/shared/ingredient.types';
 export class CookingComponent implements OnInit {
 
   selectedIngredients: Ingredient[] = [];
+  selectedRecipes: Recipe[] = [];
 
   constructor() { }
 

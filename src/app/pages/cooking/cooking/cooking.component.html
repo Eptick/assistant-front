@@ -16,3 +16,12 @@
     <p *ngFor="let s of selectedIngredients">{{ s.name }}</p>
 </div>
 <app-ingredients [(selected)]="selectedIngredients" ></app-ingredients>
+<div class="card">
+    <div class="flex justify-content-center flex-wrap card-container yellow-container">
+        <div class="flex align-items-center justify-content-center">
+            <h2>Recipes</h2>
+        </div>
+    </div>
+    <p *ngFor="let s of selectedRecipes">{{ s.name }}</p>
+</div>
+<app-recipes [(selected)]="selectedRecipes" ></app-recipes>
