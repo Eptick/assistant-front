@@ -17,6 +17,12 @@ export class RecipesService {
     );
   }
 
+  public getRecipe(uuid: string): Observable<any> {
+    return this.resource.http.get<any[]>(
+      `${this.resource.base}${this.serviceBase}/${uuid}`
+    );
+  }
+
   public saveIngredient(data: Recipe) {
     return this.resource.http.post(
       `${this.resource.base}${this.serviceBase}`,

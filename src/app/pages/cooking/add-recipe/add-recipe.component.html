@@ -1,0 +1,10 @@
+<a pButton routerLink="/cooking/add-ingredient" pRipple type="button" class="p-button-rounded text-primary p-button-text">Add ingredient</a>
+<div class="card">
+    <div class="flex justify-content-center flex-wrap card-container yellow-container">
+        <div class="flex align-items-center justify-content-center">
+            <h2>Ingredients</h2>
+        </div>
+    </div>
+    <p *ngFor="let s of selectedIngredients">{{ s.name }}</p>
+</div>
+<app-ingredients [(selected)]="selectedIngredients" ></app-ingredients>

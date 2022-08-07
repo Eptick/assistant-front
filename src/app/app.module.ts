@@ -25,6 +25,8 @@ import { CookingComponent } from './pages/cooking/cooking/cooking.component';
 import { RequiredStarComponent } from './shared/form/required-star/required-star.component';
 import { IngredientsComponent } from './cooking/ingredients/ingredients.component';
 import { RecipesComponent } from './cooking/recipes/recipes.component';
+import { AddRecipeComponent } from './pages/cooking/add-recipe/add-recipe.component';
+import { RecipeComponent } from './cooking/recipe/recipe.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -54,6 +56,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     CookingComponent,
     IngredientsComponent,
     RecipesComponent,
+    AddRecipeComponent,
+    RecipeComponent,
   ],
   imports: [
     KeycloakAngularModule,
