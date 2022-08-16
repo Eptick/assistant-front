@@ -1,7 +1,8 @@
-import { Ingredient } from "./ingredient.types"
+import { RecipeIngredient } from "./recipe-ingredient"
 
 export type Recipe = {
   uuid: string,
   name: string,
-  ingredients: Ingredient[],
+  ingredients: RecipeIngredient[],
+  description: string,
 }

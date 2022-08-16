@@ -8,3 +8,45 @@
     <p *ngFor="let s of selectedIngredients">{{ s.name }}</p>
 </div>
 <app-ingredients [(selected)]="selectedIngredients" ></app-ingredients>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="surface-card p-3 border-round">
+      <h2>Ingredient</h2>
+      <p-divider></p-divider>
+      <div class="formgrid grid">
+        <div class="field col">
+          <label for="name">Name<app-required-star></app-required-star></label>
+          <input
+            formControlName="name"
+            pInputText
+            id="name"
+            type="text"
+            class="inputfield w-full"
+          />
+          <small *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)" class="p-error block">Name is required</small>
+        </div>
+      </div>
+      <div class="formgrid grid">
+        <div class="field col">
+            <label for="name">Description<app-required-star></app-required-star></label>
+            <p-editor formControlName="description" [style]="{'height':'320px'}"></p-editor>
+            <small *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)" class="p-error block">Description is required</small>
+          </div>
+      </div>
+      <small *ngFor="let error of form.errors | keyvalue" class="p-error">
+        {{ error.key }} {{ error.value }}
+      </small>
+    </div>
+    <div class="py-8">
+      <div class="text-right">
+        <button
+          pButton
+          label="Add"
+          type="submit"
+          icon="pi pi-angle-right"
+          iconPos="right"
+          class="text-white no-underline"
+        ></button>
+      </div>
+    </div>
+  </form>
