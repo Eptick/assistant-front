@@ -3,6 +3,5 @@
     <li *ngFor="let i of recipe?.ingredients">{{ i.quantity }} - {{ i?.ingredient?.name }} </li>
 </ul>
 <h2>Postupak</h2>
-<div>
-    {{ recipe?.description }}
+<div [innerHtml]="recipe?.description">
 </div>
