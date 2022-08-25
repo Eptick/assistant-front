@@ -15,7 +15,11 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TableModule } from 'primeng/table';
 import { ContextMenuModule } from 'primeng/contextmenu';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { EditorModule } from 'primeng/editor';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
 
 import { LandingComponent } from './pages/landing/landing.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,6 +32,8 @@ import { IngredientsComponent } from './cooking/ingredients/ingredients.componen
 import { RecipesComponent } from './cooking/recipes/recipes.component';
 import { AddRecipeComponent } from './pages/cooking/add-recipe/add-recipe.component';
 import { RecipeComponent } from './cooking/recipe/recipe.component';
+import { DeleteRecipeComponent } from './cooking/recipe/delete-recipe/delete-recipe.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -59,8 +65,11 @@ function initializeKeycloak(keycloak: KeycloakService) {
     RecipesComponent,
     AddRecipeComponent,
     RecipeComponent,
+    DeleteRecipeComponent
   ],
   imports: [
+    ConfirmDialogModule,
+    
     KeycloakAngularModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -69,6 +78,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
     HttpClientModule,
     ReactiveFormsModule,
     ContextMenuModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule,
 
     ButtonModule,
     InputTextModule,
@@ -88,6 +100,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
       multi: true,
       deps: [KeycloakService],
     },
+    ConfirmationService,
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })

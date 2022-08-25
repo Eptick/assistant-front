@@ -9,7 +9,7 @@ import { Recipe } from 'src/app/types/shared/recipe.types';
   styleUrls: ['./recipe.component.scss']
 })
 export class RecipeComponent implements OnInit {
-  public id?: string;
+  public id: string = "";
   public recipe?: Recipe;
   constructor(
     private route: ActivatedRoute,
